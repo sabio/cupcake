@@ -1,6 +1,33 @@
 {% extends "sitiotemplate.html" %}
 {% load staticfiles %}
 
+{% block scripts %}
+	<script type="text/javascript">
+		function valida(){
+			var nombre = $("#nombre").val();
+			var email = $("#email").val();
+			var comentarios = $("#comentarios").val();
+
+			if( $.trim(nombre) === '' ||  $.trim(email) === '' ||  $.trim(comentarios) === '' ){
+				$("#formaErrorMensaje").html("Todos los campos son obligatorios, quedó al menos un campo vacio.");
+				$("#formaErrorMensaje").show("slow");
+				return false;
+			}
+			if(!validateEmail(email)){
+				$("#formaErrorMensaje").html("El correo electrónico es incorrecto.");
+				$("#formaErrorMensaje").show("slow");
+				return false;
+			}
+
+			$("#formaErrorMensaje").hide();
+			return true;
+
+			
+		}
+	</script>
+{% endblock %}
+
+
 {% block content %}
 	<section id="intro" class="jumbotron text-center">
 		<div class="container" style="opacity:0;">
@@ -94,18 +121,28 @@
 				</div>
 				<div class="col-md-6 ">
 					
-					<form class="form-horizontal">
+
+					{{ form.non_field_errors }}
+					<form class="form-horizontal" method="POST" onsubmit="return valida(); " action="/prueba">
+						{% csrf_token %}
+						{{ form.nombre.errors }}
 						<div style="margin-bottom: 25px" class="input-group ">
 	                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	                        <input type="text" class="form-control" data-val="true"  id="usuario" name="usuario" placeholder="Tu nombre" >
+	                        <!--<input type="text" class="form-control" data-val="true"  id="usuario" name="usuario" placeholder="Tu nombre" >-->
+	                         {{ form.nombre }}
 	                    </div>
+	                    {{ form.email.errors }}
 	                    <div style="margin-bottom: 25px" class="input-group ">
 	                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-	                        <input type="email" class="form-control" data-val="true"  id="usuario" name="usuario" placeholder="Tu correo electrónico" >
+	                        <!--<input type="email" class="form-control" data-val="true"  id="usuario" name="usuario" placeholder="Tu correo electrónico" >-->
+	                        {{ form.email }}
 	                    </div>
-						<textarea rows="10" class="form-control" cols="30" placeholder="Tu mensaje" style="width: 100%"></textarea>
+	                    {{ form.comentarios.errors }}
+						<!--<textarea rows="10" class="form-control" cols="30" placeholder="Tu mensaje" style="width: 100%"></textarea>-->
+						{{ form.comentarios }}
 						<br />
-						<button type="button" class="btn btn-primary btn-lg btn-block">Enviar</button>
+						<div id="formaErrorMensaje" class="alert alert-danger" style="display: none;" role="alert"></div>
+						<button type="submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
 					</form>
 				</div>
 			</div>

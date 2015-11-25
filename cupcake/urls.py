@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 
     url(r'^$', hello.views.index, name='index'),
     url(r'^prueba$', sitio.views.index, name='index2'),
+    url(r'^envioContacto$', sitio.views.envioContacto, name='envioContacto'),
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
 
