@@ -4,6 +4,7 @@
 {% block scripts %}
 	<script type="text/javascript">
 		function valida(){
+			return true;
 			var nombre = $("#nombre").val();
 			var email = $("#email").val();
 			var comentarios = $("#comentarios").val();
@@ -24,6 +25,19 @@
 
 			
 		}
+
+
+		$(document).ready(function(){
+			$("#comentarioForm").on("submit",function(event){
+				event.preventDefault();
+				$.post('/envioContacto', $(this).serialize(), function(data){
+					alert("data.result = "+data.result);
+					console.log("data.result = "+data.result);
+				});
+			});
+
+		});
+
 	</script>
 {% endblock %}
 
@@ -123,7 +137,7 @@
 					
 
 					{{ form.non_field_errors }}
-					<form class="form-horizontal" method="POST" onsubmit="return valida(); " action="/prueba">
+					<form  id="comentarioForm" class="form-horizontal" method="POST"  action="">
 						{% csrf_token %}
 						{{ form.nombre.errors }}
 						<div style="margin-bottom: 25px" class="input-group ">
