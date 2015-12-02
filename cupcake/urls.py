@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     url(r'^envioContacto$', sitio.views.envioContacto, name='envioContacto'),
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^enter/', sitio.views.login, name='login')
 
 )

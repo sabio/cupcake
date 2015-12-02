@@ -26,3 +26,8 @@ def envioContacto(request):
 		form = ContactForm()
 
 	# return render(request, prefijoTemplate+'index.html', {'form': form})
+
+
+def login(request):
+	if request.method == 'GET':
+		return render(request, prefijoTemplate+'login.html')
