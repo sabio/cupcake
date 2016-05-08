@@ -185,14 +185,10 @@ STATIC_URL = '/static/'
 
 # STATIC_ROOT = 'staticfilesx'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles/'),
-]
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    #'django.contrib.staticfiles.finders.AppDirectoriesFinder',    #causes verbose duplicate notifications in django 1.9
+STATICFILES_DIRS = (
+    BASE_DIR, 'staticfiles'
 )
+
 
 
 # Cosas del email
