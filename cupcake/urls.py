@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+import settings 
 
 
 import hello.views
 import sitio.views
+
+admin.autodiscover()
 
 urlpatterns = [
     url(r'^$', sitio.views.index, name='index'),
@@ -27,5 +30,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', sitio.views.login, name='login'),
     url(r'^prueba$', hello.views.index, name='index2'),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT})
 
 ]
+
