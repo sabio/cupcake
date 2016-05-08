@@ -17,8 +17,9 @@ def envioContacto(request):
 		form = ContactForm(request.POST)
 		# check whether it's valid:
 		print "form.is_valid() = %s" % form.is_valid()
+		print "request.is_ajax() = %s" % request.is_ajax()
 		if form.is_valid():
-			envia_email("Mensaje desde el portal web", [form.cleaned_data['email']], form.cleaned_data['comentarios'])
+			#envia_email("Mensaje desde el portal web", [form.cleaned_data['email']], form.cleaned_data['comentarios'])
 			response_data = {}
 			response_data['result'] = 'OK'
 			return JsonResponse(response_data)

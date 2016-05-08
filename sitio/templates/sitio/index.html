@@ -4,7 +4,6 @@
 {% block scripts %}
 	<script type="text/javascript">
 		function valida(){
-			return true;
 			var nombre = $("#nombre").val();
 			var email = $("#email").val();
 			var comentarios = $("#comentarios").val();
@@ -14,7 +13,7 @@
 				$("#formaErrorMensaje").show("slow");
 				return false;
 			}
-			if(!validateEmail(email)){
+			if( !validateEmail(email) ){
 				$("#formaErrorMensaje").html("El correo electrónico es incorrecto.");
 				$("#formaErrorMensaje").show("slow");
 				return false;
@@ -30,10 +29,13 @@
 		$(document).ready(function(){
 			$("#comentarioForm").on("submit",function(event){
 				event.preventDefault();
-				$.post('/envioContacto', $(this).serialize(), function(data){
-					alert("data.result = "+data.result);
-					console.log("data.result = "+data.result);
-				});
+				if(valida()){
+					$.post('/envioContacto', $(this).serialize(), function(data){
+						if(data.result === 'OK'){
+							alert("Su mensaje ha sido enviado");
+						}
+					});
+				}
 			});
 
 		});
@@ -43,9 +45,10 @@
 
 
 {% block content %}
+
 	<section id="intro" class="jumbotron text-center">
 		<div class="container" style="opacity:0;">
-			<h1>Cupcakes</h1>
+			<h1>Cupcakesx</h1>
 			<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. </p></p>
 			<img id="imgCupcakex" src="{% static "sitio/img/cupcakex.png" %}" style="opacity:0; width: 10%" />
 		</div>
@@ -128,7 +131,7 @@
 					</h2>
 					<p>sabsabe@sdfsdfs.com</p>
 					<a href="http://www.facebook.com" target="_blank">
-						<img src="img/facebook.ico" width="30px" />
+						<img src="/static/sitio/img/facebook.ico" width="30px" />
 					</a>
 					
 					

@@ -50,7 +50,7 @@ html, body {
 }
 
 #contacto{
-	background: url(/static/sitio/img/contacto2.jpg) no-repeat fixed; 
+	background: url(/static/sitio/img/contacto2.jpg) fixed; 
 	color: #fff;
 	padding-top: 40px;
 	
