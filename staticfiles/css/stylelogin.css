@@ -1,0 +1,49 @@
+body{
+	background-color: #99C3D1;
+}
+
+.main-content-wrapper {
+	height: 500px;
+	position: relative;
+}
+
+
+.login-content {
+    background-color: #fff;
+    border: 1px solid #d1cfca;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left:0;
+	right:0;
+	margin: auto;
+	width:50%;
+	height: 60%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media all and (max-width: 800px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
+
+.login-content {
+	width: 100%;
+}
+
+
+}
