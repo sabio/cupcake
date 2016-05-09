@@ -29,8 +29,13 @@ urlpatterns = [
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', sitio.views.login, name='login'),
-    url(r'^prueba$', hello.views.index, name='index2'),
-    # url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT})
+    url(r'^prueba$', hello.views.index, name='index2')
 
 ]
+
+
+if settings.EN_PRODUCCION:
+    urlpatterns += [url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT})]
+    print "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
+
 

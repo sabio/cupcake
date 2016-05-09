@@ -25,6 +25,7 @@ SECRET_KEY = '%1ephpn((mopqs4v*1*(m%6imik1(td0(602b5+@6&sm)1r_e6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+EN_PRODUCCION = True
 
 ALLOWED_HOSTS = []
 
@@ -86,41 +87,20 @@ DATABASES = {
 """
 
 
-ON_HEROKU = os.environ.get('ON_HEROKU')
-HEROKU_SERVER = os.environ.get('HEROKU_SERVER')
-
-print "ON_HEROKU = %s"% ON_HEROKU
-print "HEROKU_SERVER = %s"% HEROKU_SERVER
 
 
-if ON_HEROKU:
 
-    # Parse database configuration from $DATABASE_URL
-    DATABASES['default'] =  dj_database_url.config()
 
-    # Enable Connection Pooling (if desired)
-    #DATABASES['default']['ENGINE'] = 'django_postgrespool'
-
-else:
-    '''
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd7h3k6h1jg61g3',
+        'USER': 'avcqayrpxqjeqv',
+        'PASSWORD': 'p6TX2Vd4Bqm0nvzuHWS29g0-4p',
+        'HOST': 'ec2-54-227-253-238.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
-    '''
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'd7h3k6h1jg61g3',
-            'USER': 'avcqayrpxqjeqv',
-            'PASSWORD': 'p6TX2Vd4Bqm0nvzuHWS29g0-4p',
-            'HOST': 'ec2-54-227-253-238.compute-1.amazonaws.com',
-            'PORT': '5432',
-        }
-    }
+}
 
 
 
@@ -179,28 +159,20 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-""" SI SIRVE EN LOCAL ESTE
-STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfilesx')
-
-STATICFILES_DIRS = (
-    BASE_DIR, 'staticfiles'
-)
-"""
-
-
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfilesx')
-print "DDDDDDDDD = %s" %BASE_DIR
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles'),
-)
-
+if EN_PRODUCCION:
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfilesx')
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'staticfiles'),
+    )
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfilesx')
+    STATICFILES_DIRS = (
+        BASE_DIR, 'staticfiles'
+    )
 
 
 # Cosas del email
