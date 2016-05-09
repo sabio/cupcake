@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 import settings 
+import django.views.static
 
 
 import hello.views
@@ -29,13 +30,10 @@ urlpatterns = [
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', sitio.views.login, name='login'),
-    url(r'^prueba$', hello.views.index, name='index2')
+    url(r'^prueba$', hello.views.index, name='index2'),
+    url(r'^static/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.STATIC_ROOT})
 
 ]
 
-
-if settings.EN_PRODUCCION:
-    urlpatterns += [url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT})]
-    print "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
 
 

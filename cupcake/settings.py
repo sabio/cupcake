@@ -25,7 +25,7 @@ SECRET_KEY = '%1ephpn((mopqs4v*1*(m%6imik1(td0(602b5+@6&sm)1r_e6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-EN_PRODUCCION = True
+
 
 ALLOWED_HOSTS = []
 
@@ -159,20 +159,12 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-
 STATIC_URL = '/static/'
-
-if EN_PRODUCCION:
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfilesx')
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'staticfiles'),
-    )
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfilesx')
-    STATICFILES_DIRS = (
-        BASE_DIR, 'staticfiles'
-    )
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfilesx')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'staticfiles'),
+)
 
 
 # Cosas del email
