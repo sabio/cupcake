@@ -20,24 +20,29 @@
 		<div class="login-content">
 			<h2 class="col-md-12 " style="color: #068fe6;">Inicia sesión</h2>
 
-			<form id="forma" class="col-md-12 " name="loginForm" action="" method="POST">
-                    <div class="input-group">
-                    	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input class="form-control" type="text" id="userInput" name="username" placeholder="Usuario">
-                    </div>
-                    <br />
-                    <div class="input-group">
-                    	<span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
-                        <input class="form-control" type="password" id="passwordInput" name="password" placeholder="Contraseña">
-                    </div>
-                    <div class="col-md-12 text-right">
-                        <a href="/nruta/empresa/index.htm">Crear una cuenta</a><br>  
-                        <a href="/nruta/login/recuperarCuenta.htm">¿Has olvidado tu contraseña?</a>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <a class="btn btn-primary btn-lg" onclick="$('#forma').submit();">Entrar</a> 
-                    </div>
+			<form id="forma" class="col-md-12 " name="loginForm" action="/login/" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input class="form-control" type="text" id="userInput" name="username" placeholder="Usuario">
+                </div>
+                <br />
+                <div class="input-group">
+                	<span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+                    <input class="form-control" type="password" id="passwordInput" name="password" placeholder="Contraseña">
+                </div>
+                <div class="col-md-12 text-right">
+                    <a href="/nruta/empresa/index.htm">Crear una cuenta</a><br>  
+                    <a href="/nruta/login/recuperarCuenta.htm">¿Has olvidado tu contraseña?</a>
+                </div>
+                <div class="col-md-12 text-center">
+                    <a class="btn btn-primary btn-lg" onclick="$('#forma').submit();">Entrar</a> 
+                </div>
             </form>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">logout {{user.username}}</a>
+            {% endif %}
 
 		</div>
 

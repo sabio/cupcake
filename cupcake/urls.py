@@ -17,6 +17,9 @@ from django.conf.urls import include, url
 from django.contrib import admin
 import settings 
 import django.views.static
+from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 import hello.views
@@ -30,10 +33,12 @@ urlpatterns = [
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', sitio.views.login, name='login'),
+    url(r'^logout/', sitio.views.logout, name='logout'),
     url(r'^prueba$', hello.views.index, name='index2'),
-    url(r'^static/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.STATIC_ROOT})
+    url(r'^static/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.STATIC_ROOT}),
+    url(r'^nuevagaleria/', sitio.views.nuevagaleria, name='nuevagaleria'),
 
-]
 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

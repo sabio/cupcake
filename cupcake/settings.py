@@ -177,3 +177,6 @@ EMAIL_USE_TLS = True
 
 
 
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_ROOT = 'uploads'
+MEDIA_URL = "/media/"
