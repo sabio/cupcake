@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%1ephpn((mopqs4v*1*(m%6imik1(td0(602b5+@6&sm)1r_e6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = []
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'cupcake.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
