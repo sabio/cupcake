@@ -1,0 +1,61 @@
+{% extends "admintemplate.html" %}
+{% load staticfiles my_tags %}
+{% block scripts %}
+			
+
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+	<section class="main-content-wrapper col-md-12 no-padding" >
+		{% if user.is_authenticated %}
+	    	<a href="{% url 'logout' %}">logout {{user.username}}</a>
+	    {% endif %}
+
+
+
+		{%  if galeria_list %}
+		    <table id="tablaListado">
+		    	<thead>
+		    		<tr>
+		    			<td>
+		    				id
+		    			</td>
+		    			<td>
+		    				nombre
+		    			</td>
+		    			<td>
+		    				fecha
+		    			</td>
+		    			<td>
+		    				# de imagenes
+		    			</td>
+		    		</tr>
+		    	</thead>
+		    	<tbody>
+		    		{% for galeria in galeria_list %}
+		    			<tr>
+		    				<td>{{galeria.id}}</td>
+		    				<td>{{galeria.nombre}}</td>
+		    				<td>{{galeria.fecha}}</td>
+		    				<td>{% getCantDeImagenes galeria %} </td>
+		    			</tr>
+		    		{% endfor %}
+
+		    	</tbody>
+		    </table>
+		{% else %}
+			<p>No hay galerias dadas de alta</p>
+		{% endif %}
+
+	</section>
+
+	
+
+
+
+{% endblock %}

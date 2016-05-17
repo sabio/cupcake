@@ -1,0 +1,62 @@
+{% load staticfiles %}
+
+<!-- http://untame.net/2013/04/how-to-integrate-simple-parallax-with-twitter-bootstrap/ -->
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Cupcakes</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href="{% static "css/stylelogin.css" %}" rel="stylesheet" type="text/css" /> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<section class="main-content-wrapper col-md-12 no-padding" >
+		
+
+		<div class="login-content">
+			<h2 class="col-md-12 " style="color: #068fe6;">Inicia sesión</h2>
+
+			<form id="forma" class="col-md-12 " name="loginForm" action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input class="form-control" type="text" id="userInput" name="username" placeholder="Usuario">
+                </div>
+                <br />
+                <div class="input-group">
+                	<span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+                    <input class="form-control" type="password" id="passwordInput" name="password" placeholder="Contraseña">
+                </div>                
+                <!--
+                <div class="col-md-12 text-right">
+                    <a href="/nruta/empresa/index.htm">Crear una cuenta</a><br>  
+                    <a href="/nruta/login/recuperarCuenta.htm">¿Has olvidado tu contraseña?</a>
+                </div>
+            -->
+                <br />
+                <div class="col-md-12 text-center">
+                    {{mensaje}}
+                    <br />
+                    <a class="btn btn-primary btn-lg" onclick="$('#forma').submit();">Entrar</a> 
+                </div>
+            </form>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">logout {{user.username}}</a>
+            {% endif %}
+
+		</div>
+
+	</section>
+</body>
+</html>
+
+
+
+
+
+

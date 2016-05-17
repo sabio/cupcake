@@ -1,0 +1,3 @@
+http://www.djangobook.com/en/2.0/chapter13.html
+
+http://stackoverflow.com/questions/4915397/django-blob-model-field
