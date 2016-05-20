@@ -1,0 +1,62 @@
+{% extends "admintemplate.html" %}
+{% load staticfiles my_tags %}
+{% block scripts %}
+{% endblock %}
+
+
+{% block content %}
+
+	<section class="main-content-wrapper col-md-12 no-padding" >
+
+		<p style="text-align: center">
+			Listado de galerias
+		</p>
+
+		{%  if galeria_list %}
+		    <table id="tablaListado" style="margin: 0 auto">
+		    	<thead>
+		    		<tr>
+		    			<td>
+		    				id
+		    			</td>
+		    			<td>
+		    				nombre
+		    			</td>
+		    			<td>
+		    				fecha
+		    			</td>
+		    			<td>
+		    				# de imagenes
+		    			</td>
+		    			<td>
+		    				Acciones
+		    			</td>
+		    		</tr>
+		    	</thead>
+		    	<tbody>
+		    		{% for galeria in galeria_list %}
+		    			<tr class="{% cycle 'odd' 'even'%}">
+		    				<td>{{galeria.id}}</td>
+		    				<td>{{galeria.nombre}}</td>
+		    				<td>{{galeria.fecha}}</td>
+		    				<td>{% getCantDeImagenes galeria %} </td>
+		    				<td>
+		    					<a href="{% url 'editgaleria' galeria.id %}">Editar</a>
+		    					<a href="#">Eliminar</a>
+		    				</td>
+		    			</tr>
+		    		{% endfor %}
+
+		    	</tbody>
+		    </table>
+		{% else %}
+			<p>No hay galerias dadas de alta</p>
+		{% endif %}
+
+	</section>
+
+	
+
+
+
+{% endblock %}
