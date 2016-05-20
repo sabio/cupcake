@@ -13,5 +13,6 @@ class Archivo (models.Model):
 	mimetype = models.CharField(max_length=30)
 	extension = models.CharField(max_length=30)
 	imagen = models.ImageField(upload_to='imguploads')
+	data = models.TextField(db_column='data',blank=True)
 
 

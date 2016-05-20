@@ -32,12 +32,10 @@ urlpatterns = [
     url(r'^envioContacto$', sitio.views.envioContacto, name='envioContacto'),
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^login/', sitio.views.login, name='login'),
-    url(r'^logout/', sitio.views.logout, name='logout'),
     url(r'^prueba$', hello.views.index, name='index2'),
     url(r'^static/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.STATIC_ROOT}),
-    url(r'^nuevagaleria/', sitio.views.nuevagaleria, name='nuevagaleria'),
-
+    
+    url(r'^adm/', include('adm.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

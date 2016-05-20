@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'hello.apps.HelloConfig',
     'sitio.apps.SitioConfig',
+    'adm.apps.AdmConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'cupcake.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 
-if not DEBUG:
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -176,3 +177,10 @@ EMAIL_USE_TLS = True
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_ROOT = 'uploads'
 MEDIA_URL = "/media/"
+
+
+
+
+
+
+LOGIN_URL = '/adm/login/'

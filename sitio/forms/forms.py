@@ -6,11 +6,3 @@ class ContactForm(forms.Form):
     email = forms.CharField(label='Correo electrónico', max_length=100, widget=forms.TextInput(attrs={'id':'email', 'class': 'form-control', 'data-val':'true', 'placeholder':'Tu correo electrónico'}))
     comentarios = forms.CharField(label='Comentarios', max_length=1000, widget=forms.Textarea(attrs={'id':'comentarios', 'rows':'10', 'class':'form-control', 'cols':'30', 'placeholder':'Tu mensaje', 'style':'width: 100%' }))
 
-
-
-class NuevaGaleriaForm(forms.Form):
-    title = forms.CharField(max_length=30)
-    fileimg = forms.FileField()
-
-
-
