@@ -6,25 +6,27 @@ from django.forms.formsets import BaseFormSet
 
 
 class ImagenForm(forms.Form):
-	# imagen = forms.FileField(label='Imagen')
-	imagen = forms.CharField(max_length=30,label='imagen')
+	imagen = forms.FileField(label='imagen')
+	# imagen = forms.CharField(max_length=30, label='imagen')
 
 
 
 class ImagenFormSet(BaseFormSet):
-	"""
+	
 	def clean(self):
 		super(ImagenFormSet, self).clean()
 
 		if any(self.errors):
 			return
 		
+		""" ESTA VALIDACION LA PASAMOS AL VIEW
+		if len(self.forms) == 0: # Si no metieron ninguna forma de imagen
+			raise forms.ValidationError('Ingrese al menos una imagen',code='no_image')
+		"""
 		for form in self.forms:
-			print "form.cleaned_data = %s" % form.cleaned_data
-			if form.cleaned_data:
-				imagen = form.cleaned_data['imagen']
-				if not imagen:raise forms.ValidationError('Tiene que ingresar todas la imagenes',code='no_image')
-"""
+			imagen = form.cleaned_data.get("imagen",None)
+			if imagen == None: raise forms.ValidationError('Hace falta indicar una imagen',code='no_image')
+	
 
 
 

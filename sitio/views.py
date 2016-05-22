@@ -6,8 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
-from datetime import datetime   
-import base64
+
 
 
 prefijoTemplate = "sitio/"

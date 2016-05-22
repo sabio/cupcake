@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^logout/', views.logout, name='logout'),
 	url(r'^addgaleria/$', views.addgaleria, name='addgaleria'),
 	url(r'^editgaleria/(?P<galeria_id>[0-9]+)/$', views.editgaleria, name='editgaleria'),
-        # url(r'^descargaImagen/(?P<archivo_id>[0-9]+)/$', sitio.views.descargaImagen, name='descargaImagen'),
+	url(r'^descargaImagen/(?P<archivo_id>[0-9]+)/$', views.descargaImagen, name='descargaImagen'),
 ]
 
 

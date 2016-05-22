@@ -12,6 +12,10 @@ from mixins import LoginRequiredMixin
 from forms.forms import NuevaGaleriaForm, ImagenFormSet, ImagenForm
 from django.views.generic.edit import FormView
 from django.forms.formsets import formset_factory
+from datetime import datetime   
+import base64
+from utils.utils import get_extension_file
+from django import forms
 
 
 
@@ -51,58 +55,50 @@ def addgaleria(request):
 		return render(request, 'galeriaForm.html',{'form':NuevaGaleriaForm(), 'imagen_formset':imagen_formset})
 	if request.method == 'POST':
 		form = NuevaGaleriaForm(request.POST)
-		imagen_formset = ImagenFormSet_obj(request.POST)
+		imagen_formset = ImagenFormSet_obj(request.POST, request.FILES)
 
-		for imagen_form in imagen_formset:
-			print "valido = %s" %imagen_form.is_valid()
-			imagen = imagen_form.cleaned_data.get('imagen')
-			print "imagen = %s" % imagen
-
+		
 		if form.is_valid() and imagen_formset.is_valid(): # Si la forma es valida
-			print "VALIDO!!!"
+			
+			if len(imagen_formset.forms) == 0: # Si no metieron ninguna forma de imagen
+				form.add_error(None, "Ingrese al menos una imagen")
+				return render(request, 'galeriaForm.html',{'form':form, 'imagen_formset':imagen_formset})
+
+			galeria = Galeria()
+			galeria.nombre = request.POST['title']
+			galeria.fecha = datetime.now()
+			galeria.save()
+			
+			for imagen_form in imagen_formset:
+				imagen = imagen_form.cleaned_data.get('imagen')
+				content_type = imagen.content_type
+				extension = get_extension_file(imagen)
+
+				archivo = Archivo()
+				archivo.galeria = galeria
+				data = imagen.read()
+				archivo.data = base64.encodestring(data)
+				archivo.mimetype = content_type
+				archivo.extension = extension
+				archivo.save()
+				
 			return redirect('/adm/')
 
-		return render(request, 'galeriaForm.html',{'form':form, 'imagen_formset':imagen_formset})	
+		return render(request, 'galeriaForm.html',{'form':form, 'imagen_formset':imagen_formset})
 
-
-		"""
-		form = NuevaGaleriaForm(request.POST or None)
-		if not form.is_valid():
-			return render(request, 'galeriaForm.html',{'form':form})
-		"""
-
-		"""
-		for a in form.fields:
-			print "a = %s" % a
-
-		print "file = %s" % request.FILES.get('fileimg0', False)
-		print "file = %s" % request.FILES.get('fileimg1', False)
-		"""
-
-		"""	
-		galeria = Galeria()
-		galeria.nombre = request.POST['title']
-		galeria.fecha = datetime.now()
-		galeria.save()
-
-		archivo = Archivo()
-		archivo.galeria = galeria
-		archivo.imagen = request.FILES['fileimg']
-		data = request.FILES['fileimg'].read()
-		archivo.data = base64.encodestring(data)
-		archivo.mimetype = "sdf"
-		archivo.extension = "sdf"
-		archivo.save()
-		"""
-		
-		
 
 
 
 @login_required()
 def editgaleria(request, galeria_id):
-	pass
+	galeria = get_object_or_404(Galeria, pk=galeria_id)
+	imagenes = Archivo.objects.filter(galeria = galeria)
 
+	form = NuevaGaleriaForm(initial={'title': galeria.nombre})
+	ImagenFormSet_obj = formset_factory(ImagenForm, formset=ImagenFormSet,extra=1)
+	imagen_formset = ImagenFormSet_obj(initial=[])
+
+	return render(request, 'galeriaForm.html',{'form':form, 'imagen_formset':imagen_formset, 'imagenes':imagenes})
 
 
 
@@ -116,12 +112,9 @@ class GaleriaListView(LoginRequiredMixin,ListView):
 
 
 
-"""
+
 def descargaImagen(request, archivo_id):
 	archivo = get_object_or_404(Archivo, pk=archivo_id)
 	image_data = base64.decodestring(archivo.data)
-	return HttpResponse(image_data, content_type="image/png")
-
-	"""
-
+	return HttpResponse(image_data, content_type=archivo.mimetype)
 

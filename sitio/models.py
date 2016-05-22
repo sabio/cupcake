@@ -10,9 +10,8 @@ class Galeria (models.Model):
 
 class Archivo (models.Model):
 	galeria = models.ForeignKey(Galeria, on_delete=models.CASCADE)
-	mimetype = models.CharField(max_length=30)
-	extension = models.CharField(max_length=30)
-	imagen = models.ImageField(upload_to='imguploads')
+	mimetype = models.CharField(max_length=30,blank=True)
+	extension = models.CharField(max_length=30,blank=True)
 	data = models.TextField(db_column='data',blank=True)
 
 

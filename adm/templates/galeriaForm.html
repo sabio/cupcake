@@ -6,12 +6,11 @@
 
 {% block content %}
 
-
-
-
 			<form action="{% url 'addgaleria' %}" method="post" enctype="multipart/form-data" class="form-horizontal">
 			    {% csrf_token %}
-			    
+
+
+			    {{ form.non_field_errors }}
 			    <div class="input-group ">
                     <span>{{form.title.label}}: </span>
                     {{form.title}} 
@@ -42,6 +41,12 @@
 
 			    <br />
 			    <input type="submit" value="Submit" />
+			    <br />
+			    <br />
+			    {% for imagen in imagenes %}
+			    	<img src="{% url 'descargaImagen' imagen.id%}" style="width: 300px" />
+			    {% endfor %}
+
 			</form>
 			<script>
 			    $('.imagen-formset').formset({

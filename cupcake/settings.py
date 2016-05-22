@@ -85,6 +85,7 @@ if DEBUG:
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ATOMIC_REQUESTS': True,
         }
     }
 else:
@@ -96,6 +97,7 @@ else:
             'PASSWORD': 'p6TX2Vd4Bqm0nvzuHWS29g0-4p',
             'HOST': 'ec2-54-227-253-238.compute-1.amazonaws.com',
             'PORT': '5432',
+            'ATOMIC_REQUESTS': True,
         }
     }
 
