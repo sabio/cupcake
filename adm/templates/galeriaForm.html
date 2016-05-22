@@ -31,11 +31,20 @@
 			    {% csrf_token %}
 			    <input type="hidden" id="borrarFiles" name="borrarFiles" />
 
-			    {{ form.non_field_errors }}
+			    {% if form.non_field_errors %}
+				    <div class="alert alert-danger" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						<span class="sr-only">Error:</span>
+						{{ form.non_field_errors }}
+					</div>
+			    {% endif %}
+
 			    <div class="input-group ">
                     <span>{{form.title.label}}: </span>
                     {{form.title}} 
-                    {{ form.title.errors }}
+                    {% for error in form.title.errors %}
+	                    {{ error|escape }}
+	                {% endfor %}
                 </div>
 
 
@@ -43,8 +52,9 @@
                 {{ imagen_formset.management_form }}
 			    {% for imagen_form in imagen_formset %}
 			        <div class="imagen-formset">
-			            {{ imagen_form.imagen.label }}: {{ imagen_form.imagen }}
-			            {{ imagen_form.imagen.errors  }}
+			        	<br />
+			            {{ imagen_form.imagen.label }}:  {{ imagen_form.imagen }} 
+			            
 			            {% if imagen_form.imagen.errors %}
 			                {% for error in imagen_form.imagen.errors %}
 			                    {{ error|escape }}
@@ -53,15 +63,24 @@
 			        </div>
 			    {% endfor %}
 
+			    <br />
+			    <br />
+			    <br />
 			    {% if imagen_formset.non_form_errors %}
-			        {% for error in imagen_formset.non_form_errors %}
-			            {{ error|escape }}
-			        {% endfor %}
+				    <div class="alert alert-danger" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+						<span class="sr-only">Error:</span>
+						{% for error in imagen_formset.non_form_errors %}
+				            {{ error|escape }}
+				        {% endfor %}
+					</div>
 			    {% endif %}
 
 
 			    <br />
-			    <input type="submit" value="Submit" />
+			    <br />
+			    <br />
+			    <input type="submit" value="Guardar" />
 			    <br />
 			    <br />
 			    {% for imagen in imagenes %}

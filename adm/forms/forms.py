@@ -6,8 +6,8 @@ from django.forms.formsets import BaseFormSet
 
 
 class ImagenForm(forms.Form):
-	imagen = forms.FileField(label='imagen')
-	# imagen = forms.CharField(max_length=30, label='imagen')
+	imagen = forms.FileField(label='Imagen', widget=forms.FileInput(attrs={'style': 'display: inline'}) )
+
 
 
 
@@ -32,7 +32,10 @@ class ImagenFormSet(BaseFormSet):
 
 
 class NuevaGaleriaForm(forms.Form):
-	title = forms.CharField(max_length=30,label='Titulo')
+	title = forms.CharField(max_length=30,label='Titulo', error_messages={'required': 'El título es obligatorio'}, )
+
+
+
 	"""
 	def __init__(self, *args, **kwargs):
 		numImagenes = kwargs.pop('numImagenes')
