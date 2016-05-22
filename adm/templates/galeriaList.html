@@ -42,7 +42,7 @@
 		    				<td>{% getCantDeImagenes galeria %} </td>
 		    				<td>
 		    					<a href="{% url 'editgaleria' galeria.id %}">Editar</a>
-		    					<a href="#">Eliminar</a>
+		    					<a onclick="return confirm('¿Desear borrar la galeria {{galeria.nombre}}?')" href="{% url 'deletegaleria' galeria.id %}">Eliminar</a>
 		    				</td>
 		    			</tr>
 		    		{% endfor %}

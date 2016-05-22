@@ -1,14 +1,35 @@
 {% extends "admintemplate.html" %}
 {% load staticfiles my_tags %}
 {% block scripts %}
+	<script>
+		$(function () {
+	        $('.imagen-formset').formset({
+		        addText: 'agregar imagen',
+		        deleteText: 'quitar'
+		    });
+	        $(".iconoBorrarPequeno").on('click', 
+	            function (){
+	                
+	                if( $("#borrarFiles").val()==="" ){
+	                    $("#borrarFiles").val( $(this).parent().attr('idImagen') )
+	                }
+	                else{
+	                    $("#borrarFiles").val( $("#borrarFiles").val()+','+$(this).parent().attr('idImagen') )
+	                }
+	                
+	                $(this).parent().remove();
+	            }
+	        );
+	    });
+	</script>
 {% endblock %}
 
 
 {% block content %}
 
-			<form action="{% url 'addgaleria' %}" method="post" enctype="multipart/form-data" class="form-horizontal">
+			<form action="{{request.path}}" method="post" enctype="multipart/form-data" class="form-horizontal">
 			    {% csrf_token %}
-
+			    <input type="hidden" id="borrarFiles" name="borrarFiles" />
 
 			    {{ form.non_field_errors }}
 			    <div class="input-group ">
@@ -44,15 +65,14 @@
 			    <br />
 			    <br />
 			    {% for imagen in imagenes %}
-			    	<img src="{% url 'descargaImagen' imagen.id%}" style="width: 300px" />
+			    	<div class="imagenGaleriaForm" idImagen="{{imagen.id}}" style="background-image: url('{% url 'descargaImagen' imagen.id%}')">
+			    		<img class="iconoBorrarPequeno" src="{% static 'imgs/remove.png' %}" />
+			    	</div>
 			    {% endfor %}
 
 			</form>
 			<script>
-			    $('.imagen-formset').formset({
-			        addText: 'agregar imagen',
-			        deleteText: 'quitar'
-			    });
+			    
 			</script>
 
 {% endblock %}

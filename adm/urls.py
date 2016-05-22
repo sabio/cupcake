@@ -9,6 +9,7 @@ urlpatterns = [
 	url(r'^addgaleria/$', views.addgaleria, name='addgaleria'),
 	url(r'^editgaleria/(?P<galeria_id>[0-9]+)/$', views.editgaleria, name='editgaleria'),
 	url(r'^descargaImagen/(?P<archivo_id>[0-9]+)/$', views.descargaImagen, name='descargaImagen'),
+	url(r'^deletegaleria/(?P<galeria_id>[0-9]+)/$', views.deletegaleria, name='deletegaleria'),
 ]
 
 

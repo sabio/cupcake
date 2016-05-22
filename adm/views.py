@@ -89,14 +89,64 @@ def addgaleria(request):
 
 
 
+
+
+@login_required()
+def deletegaleria(request, galeria_id):
+	galeria = get_object_or_404(Galeria, pk=galeria_id)
+	galeria.delete()
+	return redirect('/adm/')
+
+
 @login_required()
 def editgaleria(request, galeria_id):
 	galeria = get_object_or_404(Galeria, pk=galeria_id)
 	imagenes = Archivo.objects.filter(galeria = galeria)
 
-	form = NuevaGaleriaForm(initial={'title': galeria.nombre})
 	ImagenFormSet_obj = formset_factory(ImagenForm, formset=ImagenFormSet,extra=1)
-	imagen_formset = ImagenFormSet_obj(initial=[])
+	
+
+	if request.method == 'GET':
+		form = NuevaGaleriaForm(initial={'title': galeria.nombre})
+		imagen_formset = ImagenFormSet_obj(initial=[])
+
+
+	if request.method == 'POST':
+		form = NuevaGaleriaForm(request.POST)
+		imagen_formset = ImagenFormSet_obj(request.POST, request.FILES)
+
+		if form.is_valid() and imagen_formset.is_valid(): # Si la forma es valida
+			
+
+			galeria.nombre = request.POST['title']
+			galeria.save()
+
+			# Borramos las imagenes que se marcaron para borrar
+
+			if request.POST['borrarFiles']:
+				borrarFiles = request.POST['borrarFiles'].split(',')
+				for idFile in borrarFiles:
+					archivo = get_object_or_404(Archivo, pk=idFile)
+					archivo.delete()
+
+
+			
+			for imagen_form in imagen_formset:
+				imagen = imagen_form.cleaned_data.get('imagen')
+				content_type = imagen.content_type
+				extension = get_extension_file(imagen)
+
+				archivo = Archivo()
+				archivo.galeria = galeria
+				data = imagen.read()
+				archivo.data = base64.encodestring(data)
+				archivo.mimetype = content_type
+				archivo.extension = extension
+				archivo.save()
+				
+			return redirect('/adm/')
+
+
 
 	return render(request, 'galeriaForm.html',{'form':form, 'imagen_formset':imagen_formset, 'imagenes':imagenes})
 
