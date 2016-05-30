@@ -8,6 +8,18 @@
 
 	<section class="main-content-wrapper col-md-12 no-padding" >
 
+
+		
+
+		{% if messages %}
+		    {% for message in messages %}
+		    	<div class="alert alert-success">
+		    		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					{{ message}}
+				</div>
+		    {% endfor %}
+		{% endif %}
+
 		<h3 style="text-align: center">
 			Listado de galerias
 		</h3>

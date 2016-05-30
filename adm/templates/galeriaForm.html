@@ -80,12 +80,14 @@
 			    <br />
 			    <br />
 			    <br />
+			    <input type="button" value="Cancelar" onclick="window.location.href={% url 'index'%}" />
 			    <input type="submit" value="Guardar" />
 			    <br />
 			    <br />
 			    {% for imagen in imagenes %}
-			    	<div class="imagenGaleriaForm" idImagen="{{imagen.id}}" style="background-image: url('{% url 'descargaImagen' imagen.id%}')">
+			    	<div class="imagenGaleriaForm"  idImagen="{{imagen.id}}" style="background-image: url('{% url 'descargaImagen' imagen.id %}')">
 			    		<img class="iconoBorrarPequeno" src="{% static 'imgs/remove.png' %}" />
+			    		<input class="botonVerImagen" type="button" value="Ver" onclick="window.open('{% url 'descargaImagen' imagen.id %}')" />
 			    	</div>
 			    {% endfor %}
 

@@ -16,6 +16,7 @@ from datetime import datetime
 import base64
 from utils.utils import get_extension_file
 from django import forms
+from django.contrib import messages
 
 
 
@@ -81,7 +82,7 @@ def addgaleria(request):
 				archivo.mimetype = content_type
 				archivo.extension = extension
 				archivo.save()
-				
+			messages.success(request, 'Información correctamente guardada')
 			return redirect('/adm/')
 
 		return render(request, 'galeriaForm.html',{'form':form, 'imagen_formset':imagen_formset})
@@ -95,6 +96,7 @@ def addgaleria(request):
 def deletegaleria(request, galeria_id):
 	galeria = get_object_or_404(Galeria, pk=galeria_id)
 	galeria.delete()
+	messages.success(request, 'Se ha eliminado lo solicitado')
 	return redirect('/adm/')
 
 
@@ -143,7 +145,7 @@ def editgaleria(request, galeria_id):
 				archivo.mimetype = content_type
 				archivo.extension = extension
 				archivo.save()
-				
+			messages.success(request, 'Información correctamente guardada')	
 			return redirect('/adm/')
 
 

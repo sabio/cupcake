@@ -32,16 +32,21 @@ td{
 	background-repeat: no-repeat;
     background-size: 200px 150px; 
     border: 1px solid gray;
-    cursor: pointer;
     display: inline-block;
     height: 150px; 
     margin: 0 auto;
-    text-align: right;
     width: 200px;
 }
 
 
 .iconoBorrarPequeno{
     cursor:pointer;
+    float: right;
     width: 15px;
+}
+
+
+.botonVerImagen{
+    cursor:pointer;
+    
 }

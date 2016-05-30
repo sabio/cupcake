@@ -34,13 +34,18 @@ html, body {
 
 
 #comoLoHacemos{
-	height: 800px;
+	
 	padding-top: 20px;
 
 }
 
 #comoLoHacemos ul{
 	list-style-position: inside;
+}
+
+#galerias{
+	padding: 40px 0px;
+	
 }
 
 
