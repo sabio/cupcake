@@ -5,7 +5,8 @@ from utils.utils import envia_email
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-
+from models import Archivo
+import base64
 
 
 
@@ -13,7 +14,8 @@ prefijoTemplate = "sitio/"
 
 def index(request):
     # return HttpResponse('Hello from Python!')
-    return render(request, prefijoTemplate+'index.html',{'form':ContactForm()})
+    imagenesID = Archivo.objects.values('id').order_by('galeria')
+    return render(request, prefijoTemplate+'index.html',{'form':ContactForm(), 'imagenesID': imagenesID})
 
 
 def envioContacto(request):	
@@ -34,3 +36,7 @@ def envioContacto(request):
 	# return render(request, prefijoTemplate+'index.html', {'form': form})
 
 
+def descargaImagen(request, archivo_id):
+	archivo = get_object_or_404(Archivo, pk=archivo_id)
+	image_data = base64.decodestring(archivo.data)
+	return HttpResponse(image_data, content_type=archivo.mimetype)
