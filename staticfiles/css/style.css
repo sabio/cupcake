@@ -33,6 +33,11 @@ html, body {
 }
 
 
+#quienesSomos{
+	
+}
+
+
 #comoLoHacemos{
 	
 	padding-top: 20px;
@@ -104,3 +109,8 @@ html, body {
 }
 
 
+@media only screen and (max-width: 767px) {
+    #mailLogo{
+    	display: none;
+    }
+}
