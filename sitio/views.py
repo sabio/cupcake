@@ -5,7 +5,7 @@ from utils.utils import envia_email
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from models import Archivo
+from models import Archivo, Galeria
 import base64
 
 
@@ -14,8 +14,9 @@ prefijoTemplate = "sitio/"
 
 def index(request):
     # return HttpResponse('Hello from Python!')
+    galerias = Galeria.objects.all()
     imagenesID = Archivo.objects.values('id').order_by('galeria')
-    return render(request, prefijoTemplate+'index.html',{'form':ContactForm(), 'imagenesID': imagenesID})
+    return render(request, prefijoTemplate+'index.html',{'form':ContactForm(), 'imagenesID': imagenesID, 'galerias': galerias })
 
 
 def envioContacto(request):	

@@ -83,7 +83,7 @@
 				return false;
 			});
 
-
+			/*
 			var jssor_1_options = {
               $AutoPlay: false,
               $ArrowNavigatorOptions: {
@@ -119,7 +119,7 @@
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
             //responsive code end
-
+            */
 		});
 
 	</script>
@@ -305,13 +305,33 @@
 	</section>
 	
 	
+	<section id="galerias" class="container">
+
+		<h1 style="text-align:center" class="featurette-heading">Trabajos realizados</h1>
+
+		{% for g in galerias %}
+			
+			<div class="col-lg-12">
+	            <h1 class="page-header">{{g.nombre}}</h1>
+	        </div>
+
+			{% for img in g.archivo_set.all %}
+				
+				<div class="col-lg-3 col-md-4 col-xs-6 thumb">
+	                <a class="thumbnail" href="{% url 'descargaImagen' img.id %}" data-lightbox="galeria-{{g.id}}">
+	                    <img class="img-responsive" src="{% url 'descargaImagen' img.id %}"  />
+	                </a>
+	            </div>
+			{% endfor %}
+		{% endfor %}
+
+	</section>
 
 
-
-
+	<!--
 	<section id="galerias">
 		<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 800px; height: 400px; overflow: hidden; visibility: hidden;">
-	        <!-- Loading Screen -->
+	        
 	        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
 	            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
 	            <div style="position:absolute;display:block;background:url('{% static "imgs/slider/loading.gif" %}') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
@@ -328,10 +348,10 @@
 	        	{% endfor %}
 
 	        </div>
-	        <!-- Thumbnail Navigator -->
+	        
 	        <div u="thumbnavigator" class="jssort03" style="position:absolute;left:0px;bottom:0px;width:600px;height:60px;" data-autocenter="1">
 	            <div style="position: absolute; top: 0; left: 0; width: 100%; height:100%; background-color: #000; filter:alpha(opacity=30.0); opacity:0.3;"></div>
-	            <!-- Thumbnail Item Skin Begin -->
+	        
 	            <div u="slides" style="cursor: default;">
 	                <div u="prototype" class="p">
 	                    <div class="w">
@@ -340,14 +360,14 @@
 	                    <div class="c"></div>
 	                </div>
 	            </div>
-	            <!-- Thumbnail Item Skin End -->
+	        
 	        </div>
-	        <!-- Arrow Navigator -->
+	        
 	        <span data-u="arrowleft" class="jssora02l" style="top:0px;left:8px;width:55px;height:55px;" data-autocenter="2"></span>
 	        <span data-u="arrowright" class="jssora02r" style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>
 	    </div>
 	</section>
-    <!-- #endregion Jssor Slider End -->
+    -->
 
 
 
