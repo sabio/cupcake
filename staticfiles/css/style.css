@@ -53,6 +53,10 @@ html, body {
 	
 }
 
+#galerias img{
+	height: 180px;
+}
+
 
 
 #masInfo{
