@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from models import Archivo, Galeria
+import os
 import base64
 
 
@@ -16,7 +17,9 @@ def index(request):
     # return HttpResponse('Hello from Python!')
     galerias = Galeria.objects.all()
     imagenesID = Archivo.objects.values('id').order_by('galeria')
-    return render(request, prefijoTemplate+'index.html',{'form':ContactForm(), 'imagenesID': imagenesID, 'galerias': galerias })
+
+
+    return render(request, prefijoTemplate+'index.html',{'form':ContactForm(), 'imagenesID': imagenesID, 'galerias': galerias, 'variable': os.environ['VARIABLE'] })
 
 
 def envioContacto(request):	
