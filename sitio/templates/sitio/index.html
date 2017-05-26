@@ -82,44 +82,6 @@
 				}, 1500);
 				return false;
 			});
-
-			/*
-			var jssor_1_options = {
-              $AutoPlay: false,
-              $ArrowNavigatorOptions: {
-                $Class: $JssorArrowNavigator$
-              },
-              $ThumbnailNavigatorOptions: {
-                $Class: $JssorThumbnailNavigator$,
-                $Cols: 9,
-                $SpacingX: 3,
-                $SpacingY: 3,
-                $Align: 260
-              }
-            };
-            
-            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-            
-            //responsive code begin
-            //you can remove responsive code if you don't want the slider scales while window resizing
-            function ScaleSlider() {
-                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-                var refSize2 = jssor_1_slider.$Elmt.parentNode.clientHeight;
-                if (refSize) {
-                    refSize = Math.min(refSize, 1000);
-                    jssor_1_slider.$ScaleWidth(refSize);
-                    //jssor_1_slider.$ScaleHeight(refSize2);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-            ScaleSlider();
-            $(window).bind("load", ScaleSlider);
-            $(window).bind("resize", ScaleSlider);
-            $(window).bind("orientationchange", ScaleSlider);
-            //responsive code end
-            */
 		});
 
 	</script>
@@ -235,7 +197,6 @@
 	</div>
 
 	<section id="intro" class="jumbotron text-center">
-		{{variable}}
 		<div class="container" style="opacity:0;">
 			<h1>Cake Rico Postres</h1>
 			<p>"Cake Rico, más que rico exquisito"</p>
@@ -246,67 +207,46 @@
 			<img id="imgCupcakex3" src="{% static "sitio/img/cupcakex3.png" %}" style="opacity:0; width: 15%" />
 			<img id="imgCupcakex5" src="{% static "sitio/img/cupcakex5.png" %}" style="opacity:0; width: 14%" />
 		</div>
-		
 	</section>
-	<div id="quienesSomos">
-		<section id="masInfo">
-			<div class="row text-center">
-		        <div class="col-lg-4">
-		          <img class="img-circle" src="{% static "sitio/img/img1.jpg" %}" alt="Generic placeholder image" width="140" height="140">
-		          <h2>¿Quienes somos?</h2>
-		          <p>Somos un equipo dedicado a postres caseros que trabajamos con entusiasmo y dedicación para hacer tu mesa de postres.</p>
-		          <!-- <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p> -->
-		        </div>
-		        <div class="col-lg-4">
-		          <img class="img-circle" src="{% static "sitio/img/img2.png" %}" alt="Generic placeholder image" width="140" height="140">
-		          <h2>Nuestro objetivo</h2>
-		          <p>Deleitar el paladar con postres totalmente artesanales, caseros, deliciosos e increibles.</p>
-		        </div>
-		        <div class="col-lg-4">
-		          <img class="img-circle" src="{% static "sitio/img/img3.png" %}" alt="Generic placeholder image" width="140" height="140">
-		          <h2>Como lo hacemos</h2>
-		          <p>Con ingredientes deliciosos sin conservadores, con el afan de deleitar los mas exigentes gustos.</p>
-		          <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-		        </div>
-		      </div>
-		</section>
-
-	</div>
-
-	<!--
-	<div class="row featurette">
-	    <div class="col-md-7">
-	      <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-	      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+	
+	<section id="quienesSomos">
+		<div class="row text-center">
+	        <div class="col-lg-4">
+	          <img class="img-circle" src="{% static "sitio/img/img1.jpg" %}" alt="Generic placeholder image" width="140" height="140">
+	          <h2>¿Quienes somos?</h2>
+	          <p>Somos un equipo dedicado a postres caseros que trabajamos con entusiasmo y dedicación para hacer tu mesa de postres.</p>
+	        </div>
+	        <div class="col-lg-4">
+	          <img class="img-circle" src="{% static "sitio/img/img2.png" %}" alt="Generic placeholder image" width="140" height="140">
+	          <h2>Nuestro objetivo</h2>
+	          <p>Deleitar el paladar con postres totalmente artesanales, caseros, deliciosos e increibles.</p>
+	        </div>
+	        <div class="col-lg-4">
+	          <img class="img-circle" src="{% static "sitio/img/img3.png" %}" alt="Generic placeholder image" width="140" height="140">
+	          <h2>Como lo hacemos</h2>
+	          <p>Con ingredientes deliciosos sin conservadores, con el afan de deleitar los mas exigentes gustos.</p>
+	        </div>
 	    </div>
-	    <div class="col-md-5">
-	      <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1MDk4Mzk4NmYyIHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTUwOTgzOTg2ZjIiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg3IiB5PSIyNjEuMSI+NTAweDUwMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true">
-	    </div>
-	</div>
-	-->
-	<section id="comoLoHacemos">
+	</section>
+
+	<section id="queOfrecemos">
 		<div class="row">
-			<div class="col-md-6 text-center">
-				<h2 class="featurette-heading">Que ofrecemos</h2>
+			<div class="text-center col-md-5 col-md-offset-1">
+				<h2>Que ofrecemos</h2>
 				<p>
-				<ul>
-					<li>Pasteles. </li>
-					<li>Cupcakes. </li>
-					<li>Flanes. </li>
-					<li>Chocoflan. </li>
-					<li>Narajaflan. </li>
-					<li>Gelatinas. </li>
-				</ul>
+					Contamos con una variedad de postres buscando en todo momento la satisfacción de nuestros clientes. Nuestros postres son los siguientes:
+				</p>
+				<p style="font-weight: bold">
+					Pasteles, cupcakes, flanes, choflanes, naranjaflanes, gelatinas, etc.
 				</p>
 			</div>
 			<div class="col-md-6 text-center">
-				<img src="{% static "sitio/img/comoLoHacemos.jpg" %}" style="border-radius:10%; width: 70%" />
+				<img src="{% static "sitio/img/queOfrecemos.jpg" %}" style="border-radius:10%; width: 70%" />
 			</div>
 		</div>
-		
 	</section>
 	
-	
+
 	<section id="galerias" class="container">
 
 		<h1 style="text-align:center" class="featurette-heading">Trabajos realizados</h1>
@@ -314,7 +254,7 @@
 		{% for g in galerias %}
 			
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	            <h1 class="page-header">{{g.nombre}}</h1>
+	            <h2 class="text-center page-header">{{g.nombre}}</h2>
 	        </div>
 
 			{% for img in g.archivo_set.all %}
@@ -328,52 +268,6 @@
 		{% endfor %}
 
 	</section>
-
-
-	<!--
-	<section id="galerias">
-		<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 800px; height: 400px; overflow: hidden; visibility: hidden;">
-	        
-	        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-	            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-	            <div style="position:absolute;display:block;background:url('{% static "imgs/slider/loading.gif" %}') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
-	        </div>
-	        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 800px; height: 400px; overflow: hidden;">
-
-	        	{% for imagenID in imagenesID %}
-	        		<div data-p="112.50" style="display: none;">
-						<img data-u="image" src="{% url 'descargaImagen' imagenID.id %}" />
-		                <img data-u="thumb" src="{% url 'descargaImagen' imagenID.id %}" />
-		            </div>
-
-
-	        	{% endfor %}
-
-	        </div>
-	        
-	        <div u="thumbnavigator" class="jssort03" style="position:absolute;left:0px;bottom:0px;width:600px;height:60px;" data-autocenter="1">
-	            <div style="position: absolute; top: 0; left: 0; width: 100%; height:100%; background-color: #000; filter:alpha(opacity=30.0); opacity:0.3;"></div>
-	        
-	            <div u="slides" style="cursor: default;">
-	                <div u="prototype" class="p">
-	                    <div class="w">
-	                        <div u="thumbnailtemplate" class="t"></div>
-	                    </div>
-	                    <div class="c"></div>
-	                </div>
-	            </div>
-	        
-	        </div>
-	        
-	        <span data-u="arrowleft" class="jssora02l" style="top:0px;left:8px;width:55px;height:55px;" data-autocenter="2"></span>
-	        <span data-u="arrowright" class="jssora02r" style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>
-	    </div>
-	</section>
-    -->
-
-
-
-
 
 
 	<section id="contacto">
@@ -402,12 +296,8 @@
 					<a href="http://www.facebook.com" target="_blank">
 						<img src="/static/sitio/img/facebook.ico" width="30px" />
 					</a>
-					
-					
 				</div>
 				<div class="col-md-6 ">
-					
-
 					{{ form.non_field_errors }}
 					<form  id="comentarioForm" class="form-horizontal" method="POST"  action="">
 						{% csrf_token %}

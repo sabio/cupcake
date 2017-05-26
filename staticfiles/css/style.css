@@ -31,19 +31,26 @@ html, body {
 }
 
 
-#quienesSomos{
-	
-}
-
-
-#comoLoHacemos{
-	
-	padding-top: 20px;
+#quienesSomos > .row{
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-top: 30px;	
 
 }
 
-#comoLoHacemos ul{
-	list-style-position: inside;
+
+#queOfrecemos > .row{
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-top: 60px;
+
+}
+
+#queOfrecemos ul{
+	list-style-type: square;
+	margin:0 auto; 
+	text-align: left; 
+	width: 60%; 
 }
 
 #galerias{
@@ -56,10 +63,6 @@ html, body {
 }
 
 
-
-#masInfo{
-	padding-top: 40px;
-}
 
 #contacto{
 	background: url(/static/sitio/img/contacto2.jpg) fixed; 

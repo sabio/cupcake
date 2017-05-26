@@ -160,7 +160,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfilesx')
+STATIC_ROOTX = os.path.join(PROJECT_ROOT, '../staticfiles') #Segun yo esto solo se usa por heroku en local pa saber donde estan los estaticos
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'staticfiles'),
 )
